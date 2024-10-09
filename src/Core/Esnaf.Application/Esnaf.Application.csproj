@@ -9,9 +9,14 @@
   <ItemGroup>
     <Folder Include="Const\" />
     <Folder Include="Attiributes\" />
+    <Folder Include="Enums\" />
     <Folder Include="Exceptions\" />
     <Folder Include="Features\" />
     <Folder Include="Validators\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Esnaf.Domain\Esnaf.Domain.csproj" />
   </ItemGroup>
 
 </Project>
