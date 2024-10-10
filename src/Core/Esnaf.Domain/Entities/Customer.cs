@@ -1,4 +1,4 @@
-﻿namespace Esnaf.Application.Entities
+﻿namespace Esnaf.Domain.Entities
 {
     public class Customer
     {

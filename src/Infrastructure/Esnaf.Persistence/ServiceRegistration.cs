@@ -1,5 +1,5 @@
 ﻿using Esnaf.Application.Abstractions.Services;
-using Esnaf.Domain.Repositories;
+using Esnaf.Application.Repositories;
 using Esnaf.Persistence.Repositories;
 using Esnaf.Persistence.Services;
 using Microsoft.Extensions.DependencyInjection;

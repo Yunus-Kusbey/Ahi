@@ -1,5 +1,5 @@
 ﻿using Esnaf.Domain.Entities;
-using Esnaf.Domain.Repositories;
+using Esnaf.Application.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
