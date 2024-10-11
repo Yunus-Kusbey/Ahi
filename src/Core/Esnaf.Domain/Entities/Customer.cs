@@ -2,14 +2,14 @@
 {
     public class Customer
     {
-        public Guid Uid;
+        public Guid Id;
         public string? Name;
         public string? Surname;
         public string? Telephone;
-        public int AddressId;
+        public Guid AddressId;
         public bool Gender;
         public string? Mail;
-        public string? MailId;
+        public int MailId;
         public DateTime BirthDay;
         public DateTime CreatedDate;
         public bool IsActive;

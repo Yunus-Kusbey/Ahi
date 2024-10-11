@@ -8,9 +8,11 @@ namespace Esnaf.Application.DTOs.Address
 {
     public class UpdateAddress
     {
-        public Guid Uid;
+        public Guid Id;
+        public string?  Name;
         public int ProvinceId;
         public int CountyId;
         public string? OpenAddress;
+        public short IsActive = 1;
     }
 }

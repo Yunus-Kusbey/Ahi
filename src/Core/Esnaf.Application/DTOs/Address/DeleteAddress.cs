@@ -8,6 +8,6 @@ namespace Esnaf.Application.DTOs.Address
 {
     public class DeleteAddress
     {
-        public Guid Uid;
+        public Guid Id { get; set; }
     }
 }

@@ -10,9 +10,10 @@ namespace Esnaf.Application.Abstractions.Services
     public interface ICartService
     {
         Task CreateCart(Address address);
+        Task AddProductCart(Address address);
+        Task DeleteProductCart(Address address);
         Task UpdateCart(Address address);
         Task DeleteCart(Guid uid);
         Task<Address> GetCart(Guid uid);
-        Task<List<Address>> GetAllCart();
     }
 }

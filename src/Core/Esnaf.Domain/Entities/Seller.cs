@@ -4,7 +4,7 @@ namespace Esnaf.Domain.Entities
 {
     public class Seller
     {
-        public Guid Uid;
+        public Guid Id;
         public string? Name;
         public string? VKN;
         public int AddressId;

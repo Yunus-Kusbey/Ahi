@@ -9,6 +9,13 @@
   <ItemGroup>
     <Folder Include="Const\" />
     <Folder Include="Attiributes\" />
+    <Folder Include="DTOs\Cart\" />
+    <Folder Include="DTOs\Category\" />
+    <Folder Include="DTOs\Customer\" />
+    <Folder Include="DTOs\Seller\" />
+    <Folder Include="DTOs\Product\" />
+    <Folder Include="DTOs\Payment\" />
+    <Folder Include="DTOs\Order\" />
     <Folder Include="Enums\" />
     <Folder Include="Exceptions\" />
     <Folder Include="Features\" />

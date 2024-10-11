@@ -4,9 +4,9 @@ namespace Esnaf.Domain.Entities
 {
     public class Cart
     {
-        public Guid Uid;
-        public int CustomerId;
-        public int SellerId;
+        public Guid Id;
+        public Guid CustomerId;
+        public Guid SellerId;
         public Decimal Total;
         public DateTime CreateDate;
         public bool IsActived;
