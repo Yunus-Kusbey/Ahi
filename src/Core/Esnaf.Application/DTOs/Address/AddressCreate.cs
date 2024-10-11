@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Esnaf.Application.DTOs.Address
 {
-    public class CreateAddress
+    public class AddressCreate
     {
         public Guid CustomerId { get; set; }
         public string? Name { get; set; }

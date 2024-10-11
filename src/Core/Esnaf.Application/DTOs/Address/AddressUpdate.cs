@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Esnaf.Application.DTOs.Address
 {
-    public class UpdateAddress
+    public class AddressUpdate
     {
         public Guid Id;
         public string?  Name;

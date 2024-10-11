@@ -10,8 +10,8 @@ namespace Esnaf.Application.Abstractions.Services
 {
     public interface IAddressService
     {
-        Task Create(CreateAddress address);
-        Task Update(UpdateAddress address);
+        Task Create(AddressCreate address);
+        Task Update(AddressUpdate address);
         Task Delete(Guid uid);
         Task<Address> Get(Guid uid);
         Task<List<Address>> GetAllAddresses(Guid uid);

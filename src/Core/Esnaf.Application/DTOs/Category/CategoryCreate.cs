@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Esnaf.Application.DTOs.Address
+namespace Esnaf.Application.DTOs.Category
 {
-    public class DeleteAddress
+    public class CategoryCreate
     {
-        public Guid Id { get; set; }
+        public string? Name;
     }
 }
