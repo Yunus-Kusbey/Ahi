@@ -1,32 +1,23 @@
 ﻿using MediatR;
 using Esnaf.Application.Repositories;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Esnaf.Application.Features.Commands.Product.CreateProduct
 {
-    public class CreateProductHandler : IRequestHandler<CreateProductRequest,CreateProductResponse>
+    public class CreateProductHandler : IRequestHandler<CreateProductRequest,bool>
 
     {
-        readonly IProductWriteRepository _productRepository;
-        public CreateProductHandler(IProductWriteRepository productRepository)
+        readonly IProductWriteRepository _productWriteRepository;
+        public CreateProductHandler(IProductWriteRepository productWriteRepository)
         {
-            _productRepository = productRepository;
+            _productWriteRepository = productWriteRepository;
         }
-        public async Task<CreateProductResponse> Handle(CreateProductRequest request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(CreateProductRequest request, CancellationToken cancellationToken)
         {
-            CreateProductResponse response = await _productRepository.AddAsync(new ()
+            return await _productWriteRepository.AddAsync(new()
             {
+                Name=request.Name,
 
-            }
-                );
-           {
-
-            }
+            });
         }
     }
 }
