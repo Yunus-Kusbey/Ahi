@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Esnaf.Application.Repositories;
 
-namespace Esnaf.Application.Features.Commands.Product.CreateProduct
+namespace Esnaf.Application.Features.Commands.Product
 {
     public class CreateProductHandler : IRequestHandler<CreateProductRequest,bool>
 
@@ -13,11 +13,9 @@ namespace Esnaf.Application.Features.Commands.Product.CreateProduct
         }
         public async Task<bool> Handle(CreateProductRequest request, CancellationToken cancellationToken)
         {
-            return await _productWriteRepository.AddAsync(new()
-            {
-                Name=request.Name,
+            return await _productWriteRepository.AddAsync(request);
 
-            });
+            
         }
     }
 }

@@ -1,14 +1,15 @@
 ﻿using Esnaf.Application.DTOs.Address;
-using Esnaf.Domain.Entities;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Esnaf.Application.Repositories
+namespace Esnaf.Application.Features.Commands.Address
 {
-    public interface IAddressWriteRepository:IWriteRepository<AddressCreate,AddressUpdate>
+    public class CreateAddressRequest : AddressCreate, IRequest<bool>
     {
+
     }
 }
