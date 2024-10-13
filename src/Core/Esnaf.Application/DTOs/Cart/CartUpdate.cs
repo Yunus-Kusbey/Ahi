@@ -8,10 +8,8 @@ namespace Esnaf.Application.DTOs.Cart
 {
     public class CartUpdate
     {
-        public Guid CartId;
-        public Guid ProductId;
-        public Guid ProductPriceId;
-        public int Quantity;
+        public Guid Id;
+        public int Total;
         public short IsActive;
     }
 }

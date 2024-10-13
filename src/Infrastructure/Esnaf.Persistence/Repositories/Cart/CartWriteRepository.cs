@@ -1,34 +1,82 @@
-﻿using Esnaf.Domain.Entities;
-using Esnaf.Application.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Esnaf.Application.Repositories;
 using Esnaf.Application.DTOs.Cart;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace Esnaf.Persistence.Repositories
 {
     public class CartWriteRepository : ICartWriteRepository
     {
-        public Task<bool> AddAsync(CartCreate entity)
+        public async Task<bool> AddAsync(CartCreate model)
         {
-            throw new NotImplementedException();
-        }
+            using (var con = Connection.SqlConnection())
+            {
+                using (var cmd = new SqlCommand("usp_tblCartInsert",con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
 
+                    cmd.Parameters.Add("@FK_customerId", SqlDbType.UniqueIdentifier, 16);
+                    cmd.Parameters.Add("@FK_sellerId", SqlDbType.UniqueIdentifier, 16);
+                    cmd.Parameters.Add("@total", SqlDbType.Decimal, 9);
+                    cmd.Parameters.Add("@createDate", SqlDbType.Date, 3);
+                    cmd.Parameters.Add("@isActived", SqlDbType.Bit, 1);
+
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+                    return await cmd.ExecuteNonQueryAsync() != 0;
+                }
+            }
+        }
         public bool Delete(Guid id)
         {
-            throw new NotImplementedException();
+            using (var con = Connection.SqlConnection())
+            {
+                using (var cmd = new SqlCommand("usp_tblCartDelete",con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16, id.ToString());
+
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+                    return cmd.ExecuteNonQuery() != 0;
+                }
+            }
+        }
+        public async Task<bool> DeleteAsync(Guid id)
+        {
+            using (var con = Connection.SqlConnection())
+            {
+                using (var cmd = new SqlCommand("usp_tblCartDelete",con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16, id.ToString());
+
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+                    return await cmd.ExecuteNonQueryAsync() != 0;
+                }
+            }
         }
 
-        public Task<bool> DeleteAsync(Guid id)
+        public bool Update(CartUpdate model)
         {
-            throw new NotImplementedException();
-        }
+            using (var con = Connection.SqlConnection())
+            {
+                using (var cmd = new SqlCommand("usp_tblCartUpdate",con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-        public bool Update(CartUpdate entity)
-        {
-            throw new NotImplementedException();
+                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16, model.Id.ToString());
+                    cmd.Parameters.Add("@total", SqlDbType.Decimal, 9, model.Total.ToString());
+                    cmd.Parameters.Add("@isActived", SqlDbType.Bit, 1, model.IsActive.ToString());
+
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+                    return cmd.ExecuteNonQuery() != 0;
+                }
+            }
         }
     }
 }

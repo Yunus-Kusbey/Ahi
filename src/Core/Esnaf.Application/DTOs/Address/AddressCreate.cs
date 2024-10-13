@@ -10,8 +10,8 @@ namespace Esnaf.Application.DTOs.Address
     {
         public Guid CustomerId { get; set; }
         public string? Name { get; set; }
-        public int ProvinceId { get; set; }
-        public int CountyId { get; set; }
+        public short ProvinceId { get; set; }
+        public Int16 CountyId { get; set; }
         public string? OpenAddress { get; set; }
 
     }

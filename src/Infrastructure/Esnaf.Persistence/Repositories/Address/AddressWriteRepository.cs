@@ -1,99 +1,85 @@
-﻿using Esnaf.Domain.Entities;
-using Esnaf.Application.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Esnaf.Application.Repositories;
 using System.Data.SqlClient;
 using System.Data;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 using Esnaf.Application.DTOs.Address;
 
 namespace Esnaf.Persistence.Repositories
 {
     public class AddressWriteRepository : IAddressWriteRepository
     {
-        SqlCommand _command = new();
-        public async Task<bool> AddAsync(AddressCreate entity)
+        public async Task<bool> AddAsync(AddressCreate model)
         {
-            using (Connection.SqlConnection())
+            using (var con = Connection.SqlConnection())
             {
-                _command.CommandType = CommandType.StoredProcedure;
-                _command.CommandText = "usp_tblAddressInsert";
+                using (var cmd = new SqlCommand("usp_tblAddressInsert",con))
+                {
+                    cmd.CommandType =CommandType.StoredProcedure;
 
-                _command.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16);
-                _command.Parameters.Add("@FK_customerId", SqlDbType.UniqueIdentifier, 16);
-                _command.Parameters.Add("@name", SqlDbType.VarChar, 20);
-                _command.Parameters.Add("@FK_province", SqlDbType.Char, 2);
-                _command.Parameters.Add("@FK_county", SqlDbType.Char, 4);
-                _command.Parameters.Add("@openAddress", SqlDbType.VarChar, 50);
-                _command.Parameters.Add("@isActive", SqlDbType.Bit, 1);
+                    cmd.Parameters.Add("@FK_customerId", SqlDbType.UniqueIdentifier, 16);
+                    cmd.Parameters.Add("@name", SqlDbType.VarChar, 20);
+                    cmd.Parameters.Add("@FK_province", SqlDbType.Char, 2);
+                    cmd.Parameters.Add("@FK_county", SqlDbType.Char, 4);
+                    cmd.Parameters.Add("@openAddress", SqlDbType.VarChar, 50);
 
-                if (Connection.SqlConnection().State != System.Data.ConnectionState.Open)
-                    Connection.Open();
-                if (await _command.ExecuteNonQueryAsync() != 0)
-                    return true;
-                else return false;
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+                    return await cmd.ExecuteNonQueryAsync() != 0;
+                }
             }
         }
 
         public bool Delete(Guid id)
         {
-
-            using (Connection.SqlConnection())
+            using (var con = Connection.SqlConnection())
             {
-                _command.CommandType = CommandType.StoredProcedure;
-                _command.CommandText = "usp_tblAddressDelete";
+                using (var cmd = new SqlCommand("usp_tblAddressDelete",con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                _command.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16);
+                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16);
 
-                if (Connection.SqlConnection().State != System.Data.ConnectionState.Open)
-                    Connection.Open();
-                if (_command.ExecuteNonQuery() != 0)
-                    return true;
-                else return false;
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+                    return cmd.ExecuteNonQuery() != 0;
+                }
             }
         }
         public async Task<bool> DeleteAsync(Guid id)
         {
-            using (Connection.SqlConnection())
+            using (var con = Connection.SqlConnection())
             {
-                _command.CommandType = CommandType.StoredProcedure;
-                _command.CommandText = "usp_tblAddressDelete";
+                using (var cmd = new SqlCommand("usp_tblAddressDelete",con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                _command.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16);
+                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16);
 
-                if (Connection.SqlConnection().State != System.Data.ConnectionState.Open)
-                    Connection.Open();
-                if (await _command.ExecuteNonQueryAsync() != 0)
-                    return true;
-                else return false;
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+                    return await cmd.ExecuteNonQueryAsync() != 0;
+                }
             }
         }
 
-        public bool Update(AddressUpdate entity)
+        public bool Update(AddressUpdate model)
         {
-            using (Connection.SqlConnection())
+            using (var con = Connection.SqlConnection())
             {
-                _command.CommandType = CommandType.StoredProcedure;
-                _command.CommandText = "usp_tblAddressUpdate";
+                using (var cmd = new SqlCommand("usp_tblAddressUpdate",con))
+                {
+                    cmd.CommandType= CommandType.StoredProcedure;
 
-                _command.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16);
-                _command.Parameters.Add("@FK_customerId", SqlDbType.UniqueIdentifier, 16);
-                _command.Parameters.Add("@name", SqlDbType.VarChar, 20);
-                _command.Parameters.Add("@FK_province", SqlDbType.Char, 2);
-                _command.Parameters.Add("@FK_county", SqlDbType.Char, 4);
-                _command.Parameters.Add("@openAddress", SqlDbType.VarChar, 50);
-                _command.Parameters.Add("@isActive", SqlDbType.Bit, 1);
+                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16);
+                    cmd.Parameters.Add("@name", SqlDbType.VarChar, 20);
+                    cmd.Parameters.Add("@FK_province", SqlDbType.Char, 2);
+                    cmd.Parameters.Add("@FK_county", SqlDbType.Char, 4);
+                    cmd.Parameters.Add("@openAddress", SqlDbType.VarChar, 50);
+                    cmd.Parameters.Add("@isActive", SqlDbType.Bit, 1);
 
-                if (Connection.SqlConnection().State != System.Data.ConnectionState.Open)
-                    Connection.Open();
-                if (_command.ExecuteNonQuery() != 0)
-                    return true;
-                else return false;
-
-
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+                    return cmd.ExecuteNonQuery() != 0;
+                }
             }
         }
     }
