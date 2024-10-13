@@ -6,29 +6,85 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Esnaf.Application.DTOs.Product;
+using System.Data.SqlClient;
+using System.Data;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Esnaf.Persistence.Repositories
 {
     public class ProductPricesWriteRepository : IProductPriceWriteRepository
     {
-        public Task<bool> AddAsync(ProductPriceCreate entity)
+        public async Task<bool> AddAsync(ProductPriceCreate entity)
         {
-            throw new NotImplementedException();
+            using (var con = Connection.SqlConnection())
+            {
+                using (var cmd = new SqlCommand("usp_tblProductPriceInsert", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@FK_productId", SqlDbType.UniqueIdentifier, 16);
+                    cmd.Parameters.Add("@name", SqlDbType.VarChar, 25);
+                    cmd.Parameters.Add("@price", SqlDbType.Decimal, 9);
+
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+                    return await cmd.ExecuteNonQueryAsync() != 0;
+                }
+            }
         }
 
         public bool Delete(Guid id)
         {
-            throw new NotImplementedException();
-        }
+            using (var con = Connection.SqlConnection())
+            {
+                using (var cmd = new SqlCommand("usp_tblProductPriceDelete", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-        public Task<bool> DeleteAsync(Guid id)
+                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16);
+
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+                    return cmd.ExecuteNonQuery() != 0;
+                }
+            }
+        }
+        public async Task<bool> DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            using (var con = Connection.SqlConnection())
+            {
+                using (var cmd = new SqlCommand("usp_tblProductPriceDelete", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16);
+
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+                    return await cmd.ExecuteNonQueryAsync() != 0;
+                }
+            }
         }
 
         public bool Update(ProductPriceUpdate entity)
         {
-            throw new NotImplementedException();
+            using (var con = Connection.SqlConnection())
+            {
+                using (var cmd = new SqlCommand("usp_tblProductPriceUpdate", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16);
+                    cmd.Parameters.Add("@FK_productId", SqlDbType.UniqueIdentifier, 16);
+                    cmd.Parameters.Add("@name", SqlDbType.VarChar, 25);
+                    cmd.Parameters.Add("@price", SqlDbType.Decimal, 9);
+                    cmd.Parameters.Add("@isActive", SqlDbType.Bit, 1);
+
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+                    return cmd.ExecuteNonQuery() != 0;
+                }
+            }
         }
     }
 }

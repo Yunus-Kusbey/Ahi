@@ -1,34 +1,78 @@
-﻿using Esnaf.Domain.Entities;
-using Esnaf.Application.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Esnaf.Application.Repositories;
 using Esnaf.Application.DTOs.Category;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace Esnaf.Persistence.Repositories
 {
     public class CategoryWriteRepository : ICategoryWriteRepository
     {
-        public Task<bool> AddAsync(CategoryCreate entity)
+        public async Task<bool> AddAsync(CategoryCreate entity)
         {
-            throw new NotImplementedException();
+            using (var con = Connection.SqlConnection())
+            {
+                using (var cmd = new SqlCommand("usp_tblCategoryInsert", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@name", SqlDbType.VarChar, 20);
+
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+                    return await cmd.ExecuteNonQueryAsync() != 0;
+                }
+            }
         }
 
         public bool Delete(Guid id)
         {
-            throw new NotImplementedException();
-        }
+            using (var con = Connection.SqlConnection())
+            {
+                using (var cmd = new SqlCommand("usp_tblCategoryDelete", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-        public Task<bool> DeleteAsync(Guid id)
+                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16);
+
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+                    return cmd.ExecuteNonQuery() != 0;
+                }
+            }
+        }
+        public async Task<bool> DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
-        }
+            using (var con = Connection.SqlConnection())
+            {
+                using (var cmd = new SqlCommand("usp_tblCategoryDelete", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
 
+                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16);
+
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+                    return await cmd.ExecuteNonQueryAsync() != 0;
+                }
+            }
+        }
         public bool Update(CategoryUpdate entity)
         {
-            throw new NotImplementedException();
+            using (var con = Connection.SqlConnection())
+            {
+                using (var cmd = new SqlCommand("usp_tblCategoryUpdate", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16);
+                    cmd.Parameters.Add("@name", SqlDbType.VarChar, 20);
+                    cmd.Parameters.Add("@isActive", SqlDbType.Bit, 1);
+
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+                    return cmd.ExecuteNonQuery() != 0;
+                }
+            }
         }
     }
 }

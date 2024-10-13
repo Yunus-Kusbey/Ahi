@@ -35,7 +35,7 @@ namespace Esnaf.Persistence.Repositories
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16, id.ToString());
+                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16);
 
                     if (con.State == ConnectionState.Closed)
                         con.Open();
@@ -51,7 +51,7 @@ namespace Esnaf.Persistence.Repositories
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16, id.ToString());
+                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16);
 
                     if (con.State == ConnectionState.Closed)
                         con.Open();
@@ -68,9 +68,9 @@ namespace Esnaf.Persistence.Repositories
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16, model.Id.ToString());
-                    cmd.Parameters.Add("@total", SqlDbType.Decimal, 9, model.Total.ToString());
-                    cmd.Parameters.Add("@isActived", SqlDbType.Bit, 1, model.IsActive.ToString());
+                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16);
+                    cmd.Parameters.Add("@total", SqlDbType.Decimal, 9);
+                    cmd.Parameters.Add("@isActived", SqlDbType.Bit, 1);
 
                     if (con.State == ConnectionState.Closed)
                         con.Open();

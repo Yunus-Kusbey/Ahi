@@ -25,8 +25,6 @@ namespace Esnaf.Persistence
             services.AddScoped<IOrderWriteRepository, OrderWriteRepository>();
             services.AddScoped<IOrderDetailReadRepository, OrderDetailReadRepository>();
             services.AddScoped<IOrderDetailWriteRepository, OrderDetailWriteRepository>();
-            services.AddScoped<IPaymentReadRepository, IPaymentReadRepository>();
-            services.AddScoped<IPaymentWriteRepository, IPaymentWriteRepository>();
             services.AddScoped<IProductReadRepository, ProductReadRepository>();
             services.AddScoped<IProductWriteRepository, ProductWriteRepository>();
             services.AddScoped<IProductPriceReadRepository, ProductPricesReadRepository>();

@@ -35,7 +35,7 @@ namespace Esnaf.Persistence.Repositories
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16, id.ToString());
+                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16);
 
                     if (con.State == ConnectionState.Closed)
                         con.Open();
