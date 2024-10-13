@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Esnaf.Application.DTOs.Category
+namespace Esnaf.Application.DTOs.Product
 {
-    public class CartDelete
+    public class ProductCategory
     {
-        public int Id;
+        public Guid ProductId;
+        public int CategoryId;
     }
 }

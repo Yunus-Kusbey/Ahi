@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Esnaf.Application.DTOs.Category
+namespace Esnaf.Application.Features.Commands.Product.CreateProduct
 {
-    public class CategoryDelete
+    public class CreateProductRequest<CreateProduct>
     {
-        public Guid Id { get; set; }
     }
 }

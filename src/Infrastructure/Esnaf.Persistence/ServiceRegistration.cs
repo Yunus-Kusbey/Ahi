@@ -19,8 +19,6 @@ namespace Esnaf.Persistence
             services.AddScoped<ICartItemWriteRepository, CartItemWriteRepository>();
             services.AddScoped<ICategoryReadRepository, CategoryReadRepository>();
             services.AddScoped<ICategoryWriteRepository, CategoryWriteRepository>();
-            services.AddScoped<ICategorySubReadRepository, CategorySubReadRepository>();
-            services.AddScoped<ICategorySubWriteRepository, CategorySubWriteRepository>();
             services.AddScoped<ICustomerReadRepository, CustomerReadRepository>();
             services.AddScoped<ICustomerWriteRepository, CustomerWriteRepository>();
             services.AddScoped<IOrderReadRepository, OrderReadRepository>();

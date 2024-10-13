@@ -9,8 +9,8 @@ namespace Esnaf.Application.Abstractions.Services
 {
     public interface IPaymentService
     {
-        Task OdemeYap(Address address);
-        Task OdemeSec(Address address);
-        Task<Address> GetAllPayment(Guid uid);
+        Task OdemeYap();
+        Task OdemeSec();
+        Task<Address> GetAllPayment();
     }
 }

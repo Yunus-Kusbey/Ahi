@@ -1,4 +1,5 @@
-﻿using Esnaf.Domain.Entities;
+﻿using Esnaf.Application.DTOs.Customer;
+using Esnaf.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace Esnaf.Application.Abstractions.Services
 {
     public interface ICustomerService
     {
-        Task CreateCustomer(Address address);
-        Task UpdateCustomer(Address address);
+        Task CreateCustomer(CustomerCreate model);
+        Task UpdateCustomer(CustomerUpdate model);
         Task DeleteCustomer(Guid uid);
         Task<Address> GetCustomer(Guid uid);
     }

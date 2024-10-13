@@ -1,4 +1,5 @@
-﻿using Esnaf.Domain.Entities;
+﻿using Esnaf.Application.DTOs.Order;
+using Esnaf.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace Esnaf.Application.Abstractions.Services
 {
     public interface IOrderService
     {
-        Task CreateOrder(Address address);
-        Task UpdateStatusOrder(Address address);
-        Task CancelOrder(Address address);
+        Task CreateOrder(OrderCreate model);
+        Task UpdateOrder(OrderUpdate model);
+        Task DeleteOrder(Guid id);
         Task<List<Address>> GetAllOrder(Guid uid);
         Task<Address> GetOrder(Guid uid);
     }

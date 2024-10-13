@@ -14,4 +14,10 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Esnaf.Application\Esnaf.Application.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Esnaf.Infrastructure\Esnaf.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Esnaf.Persistence\Esnaf.Persistence.csproj" />
+  </ItemGroup>
+
 </Project>
