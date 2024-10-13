@@ -1,8 +1,9 @@
-﻿using Esnaf.Domain.Entities;
+﻿using Esnaf.Application.DTOs.Customer;
+using Esnaf.Domain.Entities;
 
 namespace Esnaf.Application.Repositories
 {
-    public interface ICustomerWriteRepository:IWriteRepository<Customer>
+    public interface ICustomerWriteRepository:IWriteRepository<CustomerCreate,CustomerUpdate>
     {
     }
 }

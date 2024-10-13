@@ -1,4 +1,5 @@
-﻿using Esnaf.Domain.Entities;
+﻿using Esnaf.Application.DTOs.Cart;
+using Esnaf.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Esnaf.Application.Repositories
 {
-    public interface ICartItemWriteRepository:IWriteRepository<CartItem>
+    public interface ICartItemWriteRepository:IWriteRepository<CartItemCreate,CartItemUpdate>
     {
     }
 }

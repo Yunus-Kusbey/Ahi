@@ -5,27 +5,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Esnaf.Application.DTOs.Category;
 
 namespace Esnaf.Persistence.Repositories
 {
     public class CategoryWriteRepository : ICategoryWriteRepository
     {
-        public Task<bool> AddAsync(Category entity)
+        public Task<bool> AddAsync(CategoryCreate entity)
         {
             throw new NotImplementedException();
         }
 
-        public bool Delete(Category id)
+        public bool Delete(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteAsync(Category id)
+        public Task<bool> DeleteAsync(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public bool Update(Category entity)
+        public bool Update(CategoryUpdate entity)
         {
             throw new NotImplementedException();
         }

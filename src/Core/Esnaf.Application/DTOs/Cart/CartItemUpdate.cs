@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace Esnaf.Application.DTOs.Cart
 {
-    public class CartİtemCreate
+    public class CartItemUpdate
     {
+        public Guid Id;
         public Guid CartId;
         public Guid ProductId;
         public Guid ProductPriceId;
         public int Quantity;
+        public short IsActive;
     }
 }

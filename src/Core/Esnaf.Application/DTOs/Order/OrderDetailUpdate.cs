@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Esnaf.Application.DTOs.Cart
+namespace Esnaf.Application.DTOs.Order
 {
-    public class CartİtemUpdate
+    public class OrderDetailUpdate
     {
         public Guid Id;
-        public Guid CartId;
+        public Guid OrderId;
         public Guid ProductId;
         public Guid ProductPriceId;
         public int Quantity;

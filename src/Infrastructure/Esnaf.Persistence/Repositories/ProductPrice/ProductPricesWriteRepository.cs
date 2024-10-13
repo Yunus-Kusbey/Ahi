@@ -5,27 +5,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Esnaf.Application.DTOs.Product;
 
 namespace Esnaf.Persistence.Repositories
 {
     public class ProductPricesWriteRepository : IProductPriceWriteRepository
     {
-        public Task<bool> AddAsync(ProductPrice entity)
+        public Task<bool> AddAsync(ProductPriceCreate entity)
         {
             throw new NotImplementedException();
         }
 
-        public bool Delete(ProductPrice id)
+        public bool Delete(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteAsync(ProductPrice id)
+        public Task<bool> DeleteAsync(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public bool Update(ProductPrice entity)
+        public bool Update(ProductPriceUpdate entity)
         {
             throw new NotImplementedException();
         }

@@ -8,13 +8,14 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using Esnaf.Application.DTOs.Product;
 
 namespace Esnaf.Persistence.Repositories
 {
     public class AddressWriteRepository : IAddressWriteRepository
     {
         SqlCommand _command = new();
-        public async Task<bool> AddAsync(Address entity)
+        public async Task<bool> AddAsync(ProductCreate entity)
         {
             using (Connection.SqlConnection())
             {
@@ -37,8 +38,7 @@ namespace Esnaf.Persistence.Repositories
             }
         }
 
-
-        public bool Delete(Address id)
+        public bool Delete(Guid id)
         {
 
             using (Connection.SqlConnection())
@@ -55,7 +55,7 @@ namespace Esnaf.Persistence.Repositories
                 else return false;
             }
         }
-        public async Task<bool> DeleteAsync(Address id)
+        public async Task<bool> DeleteAsync(Guid id)
         {
             using (Connection.SqlConnection())
             {
@@ -72,7 +72,7 @@ namespace Esnaf.Persistence.Repositories
             }
         }
 
-        public bool Update(Address entity)
+        public bool Update(ProductUpdate entity)
         {
             using (Connection.SqlConnection())
             {

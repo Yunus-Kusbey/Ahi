@@ -5,27 +5,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Esnaf.Application.DTOs.Cart;
 
 namespace Esnaf.Persistence.Repositories
 {
     public class CartWriteRepository : ICartWriteRepository
     {
-        public Task<bool> AddAsync(Cart entity)
+        public Task<bool> AddAsync(CartCreate entity)
         {
             throw new NotImplementedException();
         }
 
-        public bool Delete(Cart id)
+        public bool Delete(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteAsync(Cart id)
+        public Task<bool> DeleteAsync(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public bool Update(Cart entity)
+        public bool Update(CartUpdate entity)
         {
             throw new NotImplementedException();
         }

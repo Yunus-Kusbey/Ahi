@@ -4,15 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Esnaf.Application.DTOs.Order
+namespace Esnaf.Application.DTOs.Cart
 {
-    public class OrderDetailUptdate
+    public class CartItemCreate
     {
-        public Guid Id;
-        public Guid OrderId;
+        public Guid CartId;
         public Guid ProductId;
         public Guid ProductPriceId;
         public int Quantity;
-        public short IsActive;
     }
 }

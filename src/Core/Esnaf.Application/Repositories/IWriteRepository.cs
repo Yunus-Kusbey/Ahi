@@ -1,11 +1,13 @@
 ﻿namespace Esnaf.Application.Repositories
 {
-    public interface IWriteRepository<T>:IRepository <T> where T : class
+    public interface IWriteRepository<A, U>
+        where A : class
+        where U : class
     {
-        Task<bool> AddAsync(T entity);
-        bool Delete(T id);
-        Task<bool> DeleteAsync(T id);
-        bool Update(T entity);
+        Task<bool> AddAsync(A entity);
+        bool Delete(Guid id);
+        Task<bool> DeleteAsync(Guid id);
+        bool Update(U entity);
 
     }
 }

@@ -5,27 +5,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Esnaf.Application.DTOs.Order;
 
 namespace Esnaf.Persistence.Repositories
 {
     public class OrderDetailWriteRepository : IOrderDetailWriteRepository
     {
-        public Task<bool> AddAsync(OrderDetail entity)
+        public Task<bool> AddAsync(OrderDetailCreate entity)
         {
             throw new NotImplementedException();
         }
 
-        public bool Delete(OrderDetail id)
+        public bool Delete(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteAsync(OrderDetail id)
+        public Task<bool> DeleteAsync(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public bool Update(OrderDetail entity)
+        public bool Update(OrderDetailUpdate entity)
         {
             throw new NotImplementedException();
         }
