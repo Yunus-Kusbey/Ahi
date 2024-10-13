@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Esnaf.Application.DTOs.Category
 {
-    internal class CategoryDelete
+    public class CategoryDelete
     {
+        public Guid Id { get; set; }
     }
 }
