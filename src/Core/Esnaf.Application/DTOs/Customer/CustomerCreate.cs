@@ -10,11 +10,8 @@ namespace Esnaf.Application.DTOs.Customer
     {
         public string? Name { get; set; }
         public string? Surname { get; set; }
-        public int Phone { get; set; }
         public Guid AddressId { get; set; }
         public short Gender { get; set; }
-        public string? Mail { get; set; }
-        public short MailId { get; set; }
         public DateTime BirthDay { get; set; }
 
     }

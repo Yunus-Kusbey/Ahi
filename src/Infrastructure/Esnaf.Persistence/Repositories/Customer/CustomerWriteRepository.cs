@@ -15,13 +15,10 @@ namespace Esnaf.Persistence
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@name", SqlDbType.VarChar, 20);
+                    cmd.Parameters.Add("@name", SqlDbType.VarChar, 24);
                     cmd.Parameters.Add("@surname", SqlDbType.VarChar, 24);
-                    cmd.Parameters.Add("@telephone", SqlDbType.VarChar, 10);
                     cmd.Parameters.Add("@FK_addressId", SqlDbType.UniqueIdentifier, 16);
                     cmd.Parameters.Add("@gender", SqlDbType.Bit, 1);
-                    cmd.Parameters.Add("@mail", SqlDbType.VarChar, 48);
-                    cmd.Parameters.Add("@FK_MailId", SqlDbType.Char, 1);
                     cmd.Parameters.Add("@BirthDay", SqlDbType.Date, 3);
 
                     if (con.State == ConnectionState.Closed)
@@ -72,14 +69,10 @@ namespace Esnaf.Persistence
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16);
-                    cmd.Parameters.Add("@name", SqlDbType.VarChar, 20);
+                    cmd.Parameters.Add("@name", SqlDbType.VarChar, 24);
                     cmd.Parameters.Add("@surname", SqlDbType.VarChar, 24);
-                    cmd.Parameters.Add("@telephone", SqlDbType.VarChar, 10);
                     cmd.Parameters.Add("@FK_addressId", SqlDbType.UniqueIdentifier, 16);
                     cmd.Parameters.Add("@gender", SqlDbType.Bit, 1);
-                    cmd.Parameters.Add("@mail", SqlDbType.VarChar, 48);
-                    cmd.Parameters.Add("@FK_MailId", SqlDbType.Char, 1);
-                    cmd.Parameters.Add("@BirthDay", SqlDbType.Date, 3);
                     cmd.Parameters.Add("@isActive", SqlDbType.Bit, 1);
 
                     if (con.State == ConnectionState.Closed)

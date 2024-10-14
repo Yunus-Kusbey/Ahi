@@ -1,5 +1,6 @@
 using Esnaf.Application;
 using Esnaf.Persistence;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddPersistenceServices();
 builder.Services.AddApplicationServices();
+
 
 var app = builder.Build();
 
@@ -22,7 +24,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.MapControllers();
 

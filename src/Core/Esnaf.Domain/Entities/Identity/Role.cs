@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Esnaf.Persistence.Services
+namespace Esnaf.Domain.Entities.Identity
 {
-    public class AddressService
+    public class Role
     {
     }
 }

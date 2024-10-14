@@ -12,11 +12,7 @@ namespace Esnaf.Application.DTOs.Customer
         public Guid AdressId;
         public string? Name;
         public string? Surname;
-        public string? Email;
-        public short MailId;
-        public string? Phone;
         public short Gender;
-        public DateTime BirthDate;
         public short IsActive;
 
 

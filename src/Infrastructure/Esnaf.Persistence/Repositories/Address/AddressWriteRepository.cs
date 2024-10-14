@@ -15,11 +15,11 @@ namespace Esnaf.Persistence.Repositories
                 {
                     cmd.CommandType =CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@FK_customerId", SqlDbType.UniqueIdentifier, 16);
-                    cmd.Parameters.Add("@name", SqlDbType.VarChar, 20);
-                    cmd.Parameters.Add("@FK_province", SqlDbType.Char, 2);
-                    cmd.Parameters.Add("@FK_county", SqlDbType.Char, 4);
-                    cmd.Parameters.Add("@openAddress", SqlDbType.VarChar, 50);
+                    cmd.Parameters.Add("@FK_customerId", SqlDbType.UniqueIdentifier, 16).Value=model.CustomerId;
+                    cmd.Parameters.Add("@name", SqlDbType.VarChar, 20).Value=model.Name;
+                    cmd.Parameters.Add("@FK_province", SqlDbType.Char, 2).Value=model.ProvinceId;
+                    cmd.Parameters.Add("@FK_county", SqlDbType.Char, 4).Value=model.CountyId;
+                    cmd.Parameters.Add("@openAddress", SqlDbType.VarChar, 50).Value=model.OpenAddress;
 
                     if (con.State == ConnectionState.Closed)
                         con.Open();

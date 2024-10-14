@@ -2,6 +2,7 @@
 using Esnaf.Application.Repositories;
 using Esnaf.Persistence.Repositories;
 using Esnaf.Persistence.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Esnaf.Persistence
@@ -32,7 +33,6 @@ namespace Esnaf.Persistence
             services.AddScoped<ISellerReadRepository,ISellerReadRepository>();
             services.AddScoped<ISellerWriteRepository,ISellerWriteRepository>();
             #endregion
-
 
             #region Services
 

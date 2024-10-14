@@ -9,9 +9,9 @@ namespace Esnaf.Application.DTOs.Seller
     public class SellerUpdate
     {
         public Guid Id;
-        public string? Name;
+        public string? ShopName;
         public string? VKN;
-        public string? Address;
+        public string? AddressId;
         public short IsActive;
     }
 }
