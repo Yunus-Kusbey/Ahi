@@ -1,6 +1,0 @@
-@Esnaf.APIGateway_HostAddress = http://localhost:5024
-
-GET {{Esnaf.APIGateway_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
