@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Esnaf.Infrastructure", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Esnaf.Persistence", "src\Infrastructure\Esnaf.Persistence\Esnaf.Persistence.csproj", "{1F7294A5-2167-45C3-874A-B7D5B9B07D43}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Esnaf.API", "src\Presentation\Esnaf.API\Esnaf.API.csproj", "{FBDC7A2E-BA34-46E8-AEA1-AB97C7769155}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{1F7294A5-2167-45C3-874A-B7D5B9B07D43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F7294A5-2167-45C3-874A-B7D5B9B07D43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F7294A5-2167-45C3-874A-B7D5B9B07D43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBDC7A2E-BA34-46E8-AEA1-AB97C7769155}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBDC7A2E-BA34-46E8-AEA1-AB97C7769155}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBDC7A2E-BA34-46E8-AEA1-AB97C7769155}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBDC7A2E-BA34-46E8-AEA1-AB97C7769155}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +59,7 @@ Global
 		{900A8A3D-17E3-427E-9B54-E0DEB9139648} = {9E92FC47-2EF1-4135-B476-482AA1F7BE69}
 		{E3DE37CF-5CD1-41A4-A56B-E6A346472125} = {86118073-6FF9-4FE7-A8ED-5FF22F22A980}
 		{1F7294A5-2167-45C3-874A-B7D5B9B07D43} = {86118073-6FF9-4FE7-A8ED-5FF22F22A980}
+		{FBDC7A2E-BA34-46E8-AEA1-AB97C7769155} = {EE722498-160E-4699-8980-7A590D5D0608}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7086125E-4E9C-4DBD-BDD9-6626C6EC1D4B}
