@@ -1,6 +1,0 @@
-@adasdasd_HostAddress = http://localhost:5263
-
-GET {{adasdasd_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
