@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Esnaf.Application.Repositories
 {
-    public interface ICartItemReadRepository:IWriteRepository<CartItemCreate,CartItemUpdate>
+    public interface ICartItemReadRepository:IReadRepository<CartItem>
     {
     }
 }

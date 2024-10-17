@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Esnaf.Application.Repositories
 {
-    public interface IOrderDetailWriteRepository:IWriteRepository<OrderDetailCreate,OrderDetailUpdate>
+    public interface IOrderDetailWriteRepository:IWriteRepository<OrderDetailCreateDTO, OrderDetailUpdateDTO, Guid>
     {
     }
 }

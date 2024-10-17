@@ -2,12 +2,13 @@
 using Esnaf.Application.DTOs.Order;
 using System.Data.SqlClient;
 using System.Data;
+using System.Reflection;
 
 namespace Esnaf.Persistence.Repositories
 {
     public class OrderDetailWriteRepository : IOrderDetailWriteRepository
     {
-        public async Task<bool> AddAsync(OrderDetailCreate entity)
+        public async Task<Guid> AddAsync(OrderDetailCreateDTO model)
         {
             using (var con = Connection.SqlConnection())
             {
@@ -15,14 +16,19 @@ namespace Esnaf.Persistence.Repositories
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@FK_orderId", SqlDbType.UniqueIdentifier, 16);
-                    cmd.Parameters.Add("@FK_productId", SqlDbType.UniqueIdentifier, 16);
-                    cmd.Parameters.Add("@FK_productPrice", SqlDbType.UniqueIdentifier, 16);
-                    cmd.Parameters.Add("@quantity", SqlDbType.Int, 4);
-
-                    if (con.State == ConnectionState.Closed)
-                        con.Open();
-                    return await cmd.ExecuteNonQueryAsync() != 0;
+                    cmd.Parameters.Add("@FK_orderId", SqlDbType.UniqueIdentifier, 16).Value = model.OrderId;
+                    cmd.Parameters.Add("@FK_productId", SqlDbType.UniqueIdentifier, 16).Value = model.ProductId;
+                    cmd.Parameters.Add("@FK_productPrice", SqlDbType.UniqueIdentifier, 16).Value = model.ProductPriceId;
+                    cmd.Parameters.Add("@quantity", SqlDbType.Int, 4).Value = model.Quantity;
+                    var ExistsParam = new SqlParameter("@exists", SqlDbType.UniqueIdentifier)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+                    cmd.Parameters.Add(ExistsParam);
+                    con.Open();
+                    await cmd.ExecuteNonQueryAsync();
+                    Guid userExists = (Guid)ExistsParam.Value;
+                    return userExists;
                 }
             }
         }
@@ -35,10 +41,9 @@ namespace Esnaf.Persistence.Repositories
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16);
+                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16).Value = id;
 
-                    if (con.State == ConnectionState.Closed)
-                        con.Open();
+                    con.Open();
                     return cmd.ExecuteNonQuery() != 0;
                 }
             }
@@ -51,16 +56,15 @@ namespace Esnaf.Persistence.Repositories
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16);
+                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16).Value = id;
 
-                    if (con.State == ConnectionState.Closed)
-                        con.Open();
+                    con.Open();
                     return await cmd.ExecuteNonQueryAsync() != 0;
                 }
             }
         }
 
-        public bool Update(OrderDetailUpdate entity)
+        public bool Update(OrderDetailUpdateDTO model)
         {
             using (var con = Connection.SqlConnection())
             {
@@ -68,14 +72,13 @@ namespace Esnaf.Persistence.Repositories
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16);
-                    cmd.Parameters.Add("@FK_orderId", SqlDbType.UniqueIdentifier, 16);
-                    cmd.Parameters.Add("@FK_productId", SqlDbType.UniqueIdentifier, 16);
-                    cmd.Parameters.Add("@FK_productPrice", SqlDbType.UniqueIdentifier, 16);
-                    cmd.Parameters.Add("@quantity", SqlDbType.Int, 4);
+                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16).Value = model.Id;
+                    cmd.Parameters.Add("@FK_orderId", SqlDbType.UniqueIdentifier, 16).Value = model.OrderId;
+                    cmd.Parameters.Add("@FK_productId", SqlDbType.UniqueIdentifier, 16).Value = model.ProductId;
+                    cmd.Parameters.Add("@FK_productPrice", SqlDbType.UniqueIdentifier, 16).Value = model.ProductId;
+                    cmd.Parameters.Add("@quantity", SqlDbType.Int, 4).Value = model.Quantity;
 
-                    if (con.State == ConnectionState.Closed)
-                        con.Open();
+                    con.Open();
                     return cmd.ExecuteNonQuery() != 0;
                 }
             }

@@ -2,7 +2,6 @@
 using Esnaf.Application.Repositories;
 using Esnaf.Persistence.Repositories;
 using Esnaf.Persistence.Services;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Esnaf.Persistence
@@ -30,12 +29,16 @@ namespace Esnaf.Persistence
             services.AddScoped<IProductWriteRepository, ProductWriteRepository>();
             services.AddScoped<IProductPriceReadRepository, ProductPricesReadRepository>();
             services.AddScoped<IProductPriceWriteRepository, ProductPricesWriteRepository>();
-            services.AddScoped<ISellerReadRepository,ISellerReadRepository>();
-            services.AddScoped<ISellerWriteRepository,ISellerWriteRepository>();
+            services.AddScoped<ISellerReadRepository,SellerReadRepository>();
+            services.AddScoped<ISellerWriteRepository,SellerWriteRepository>();
+            services.AddScoped<IUserReadRepository, UserReadRepository>();
+            services.AddScoped<IUserWriteRepository, UserWriteRepository>();
             #endregion
 
             #region Services
-
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IUserService, UserService>();
+            
             #endregion
 
         }

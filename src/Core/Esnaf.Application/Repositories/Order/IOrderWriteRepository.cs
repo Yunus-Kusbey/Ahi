@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Esnaf.Application.Repositories
 {
-    public interface IOrderWriteRepository:IWriteRepository<OrderCreate,OrderUpdate>
+    public interface IOrderWriteRepository:IWriteRepository<OrderCreateDTO, OrderUpdateDTO, Guid>
     {
     }
 }

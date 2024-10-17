@@ -1,6 +1,5 @@
 using Esnaf.Application;
 using Esnaf.Persistence;
-using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 

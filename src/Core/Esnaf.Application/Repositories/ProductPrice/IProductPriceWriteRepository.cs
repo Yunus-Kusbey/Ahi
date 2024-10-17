@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Esnaf.Application.Repositories
 {
-    public interface IProductPriceWriteRepository:IWriteRepository<ProductPriceCreate,ProductPriceUpdate>
+    public interface IProductPriceWriteRepository:IWriteRepository<ProductPriceCreateDTO, ProductPriceUpdateDTO, Guid>
     {
     }
 }

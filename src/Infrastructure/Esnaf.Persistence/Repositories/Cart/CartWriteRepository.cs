@@ -2,28 +2,32 @@
 using Esnaf.Application.DTOs.Cart;
 using System.Data.SqlClient;
 using System.Data;
+using System.Reflection;
 
 namespace Esnaf.Persistence.Repositories
 {
     public class CartWriteRepository : ICartWriteRepository
     {
-        public async Task<bool> AddAsync(CartCreate model)
+        public async Task<Guid> AddAsync(CartCreateDTO model)
         {
             using (var con = Connection.SqlConnection())
             {
-                using (var cmd = new SqlCommand("usp_tblCartInsert",con))
+                using (var cmd = new SqlCommand("usp_tblCartInsert", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@FK_customerId", SqlDbType.UniqueIdentifier, 16);
-                    cmd.Parameters.Add("@FK_sellerId", SqlDbType.UniqueIdentifier, 16);
-                    cmd.Parameters.Add("@total", SqlDbType.Decimal, 9);
-                    cmd.Parameters.Add("@createDate", SqlDbType.Date, 3);
-                    cmd.Parameters.Add("@isActived", SqlDbType.Bit, 1);
-
-                    if (con.State == ConnectionState.Closed)
-                        con.Open();
-                    return await cmd.ExecuteNonQueryAsync() != 0;
+                    cmd.Parameters.Add("@FK_customerId", SqlDbType.UniqueIdentifier, 16).Value = model.CustomerId;
+                    cmd.Parameters.Add("@FK_sellerId", SqlDbType.UniqueIdentifier, 16).Value = model.SellerId;
+                    cmd.Parameters.Add("@total", SqlDbType.Decimal, 9).Value = model.Total;
+                    var ExistsParam = new SqlParameter("@exists", SqlDbType.UniqueIdentifier)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+                    cmd.Parameters.Add(ExistsParam);
+                    con.Open();
+                    await cmd.ExecuteNonQueryAsync();
+                    Guid userExists = (Guid)ExistsParam.Value;
+                    return userExists;
                 }
             }
         }
@@ -31,14 +35,13 @@ namespace Esnaf.Persistence.Repositories
         {
             using (var con = Connection.SqlConnection())
             {
-                using (var cmd = new SqlCommand("usp_tblCartDelete",con))
+                using (var cmd = new SqlCommand("usp_tblCartDelete", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16);
+                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16).Value = id;
 
-                    if (con.State == ConnectionState.Closed)
-                        con.Open();
+                    con.Open();
                     return cmd.ExecuteNonQuery() != 0;
                 }
             }
@@ -47,33 +50,30 @@ namespace Esnaf.Persistence.Repositories
         {
             using (var con = Connection.SqlConnection())
             {
-                using (var cmd = new SqlCommand("usp_tblCartDelete",con))
+                using (var cmd = new SqlCommand("usp_tblCartDelete", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16);
+                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16).Value = id;
 
-                    if (con.State == ConnectionState.Closed)
-                        con.Open();
+                    con.Open();
                     return await cmd.ExecuteNonQueryAsync() != 0;
                 }
             }
         }
 
-        public bool Update(CartUpdate model)
+        public bool Update(CartUpdateDTO model)
         {
             using (var con = Connection.SqlConnection())
             {
-                using (var cmd = new SqlCommand("usp_tblCartUpdate",con))
+                using (var cmd = new SqlCommand("usp_tblCartUpdate", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16);
-                    cmd.Parameters.Add("@total", SqlDbType.Decimal, 9);
-                    cmd.Parameters.Add("@isActived", SqlDbType.Bit, 1);
+                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16).Value = model.Id;
+                    cmd.Parameters.Add("@isActived", SqlDbType.Bit, 1).Value = model.IsActive;
 
-                    if (con.State == ConnectionState.Closed)
-                        con.Open();
+                    con.Open();
                     return cmd.ExecuteNonQuery() != 0;
                 }
             }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Esnaf.Application.Repositories
 {
-    public interface ICategoryWriteRepository:IWriteRepository<CategoryCreate, CategoryUpdate>
+    public interface ICategoryWriteRepository:IWriteRepository<CategoryCreateDTO, CategoryUpdateDTO,int>
     {
     }
 }

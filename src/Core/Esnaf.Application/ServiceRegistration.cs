@@ -11,7 +11,7 @@ namespace Esnaf.Application
         public static void AddApplicationServices(this IServiceCollection collection)
         {
             collection.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
-            collection.AddIdentity<User, Role>()
+          /*  collection.AddIdentity<User, Role>()
         .AddUserStore<ICustomIdentityUser>() // Kendi kullanıcı deposu
         .AddRoleStore<ICustomIdentityRole>() // Kendi rol deposu
         .AddDefaultTokenProviders();
@@ -36,7 +36,7 @@ namespace Esnaf.Application
             });
             collection.AddAuthorization();
 
-            collection.AddControllers();
+            collection.AddControllers();*/
         }
 
 

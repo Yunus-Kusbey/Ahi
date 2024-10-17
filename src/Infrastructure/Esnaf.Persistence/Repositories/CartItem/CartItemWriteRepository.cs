@@ -2,27 +2,33 @@
 using Esnaf.Application.DTOs.Cart;
 using System.Data;
 using System.Data.SqlClient;
+using System.Reflection;
 
 namespace Esnaf.Persistence.Repositories
 {
     public class CartItemWriteRepository : ICartItemWriteRepository
     {
-        public async Task<bool> AddAsync(CartItemCreate entity)
+        public async Task<int> AddAsync(CartItemCreateDTO model)
         {
             using (var con = Connection.SqlConnection())
             {
-                using (var cmd = new SqlCommand("usp_tblCartItemInsert",con))
+                using (var cmd = new SqlCommand("usp_tblCartItemInsert", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@FK_cartId", SqlDbType.UniqueIdentifier, 16);
-                    cmd.Parameters.Add("@FK_productId", SqlDbType.UniqueIdentifier, 16);
-                    cmd.Parameters.Add("@FK_productPriceId", SqlDbType.UniqueIdentifier, 16);
-                    cmd.Parameters.Add("@quantity", SqlDbType.Int, 4);
-
-                    if (con.State == ConnectionState.Closed)
-                        con.Open();
-                    return await cmd.ExecuteNonQueryAsync() != 0;
+                    cmd.Parameters.Add("@FK_cartId", SqlDbType.UniqueIdentifier, 16).Value = model.CartId;
+                    cmd.Parameters.Add("@FK_productId", SqlDbType.UniqueIdentifier, 16).Value = model.ProductId;
+                    cmd.Parameters.Add("@FK_productPriceId", SqlDbType.UniqueIdentifier, 16).Value = model.ProductPriceId;
+                    cmd.Parameters.Add("@quantity", SqlDbType.Int, 4).Value = model.Quantity;
+                    var ExistsParam = new SqlParameter("@exists", SqlDbType.Int)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+                    cmd.Parameters.Add(ExistsParam);
+                    con.Open();
+                    await cmd.ExecuteNonQueryAsync();
+                    int userExists = (int)ExistsParam.Value;
+                    return userExists;
                 }
             }
         }
@@ -31,14 +37,13 @@ namespace Esnaf.Persistence.Repositories
         {
             using (var con = Connection.SqlConnection())
             {
-                using (var cmd = new SqlCommand("usp_tblCartItemDelete",con))
+                using (var cmd = new SqlCommand("usp_tblCartItemDelete", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16);
+                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16).Value = id;
 
-                    if (con.State == ConnectionState.Closed)
-                        con.Open();
+                    con.Open();
                     return cmd.ExecuteNonQuery() != 0;
                 }
             }
@@ -47,36 +52,34 @@ namespace Esnaf.Persistence.Repositories
         {
             using (var con = Connection.SqlConnection())
             {
-                using (var cmd = new SqlCommand("usp_tblCartItemDelete",con))
+                using (var cmd = new SqlCommand("usp_tblCartItemDelete", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16).Value = id;
 
-                    if (con.State == ConnectionState.Closed)
-                        con.Open();
+                    con.Open();
                     return await cmd.ExecuteNonQueryAsync() != 0;
                 }
             }
         }
-        public bool Update(CartItemUpdate entity)
+        public bool Update(CartItemUpdateDTO model)
         {
             using (var con = Connection.SqlConnection())
             {
-                using (var cmd = new SqlCommand("usp_tblCartItemUpdate",con))
+                using (var cmd = new SqlCommand("usp_tblCartItemUpdate", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@id", SqlDbType.Int, 4);
-                    cmd.Parameters.Add(("@FK_cartId", SqlDbType.UniqueIdentifier, 16));
-                    cmd.Parameters.Add("@FK_productId", SqlDbType.UniqueIdentifier, 16);
-                    cmd.Parameters.Add("@FK_productPriceId", SqlDbType.UniqueIdentifier, 16);
-                    cmd.Parameters.Add("@quantity", SqlDbType.Int, 4);
-                    cmd.Parameters.Add("@total", SqlDbType.Decimal, 9);
-                    cmd.Parameters.Add("@isActive", SqlDbType.Bit, 1);
+                    cmd.Parameters.Add("@id", SqlDbType.Int, 4).Value = model.Id;
+                    cmd.Parameters.Add("@FK_cartId", SqlDbType.UniqueIdentifier, 16).Value = model.CartId;
+                    cmd.Parameters.Add("@FK_productId", SqlDbType.UniqueIdentifier, 16).Value = model.ProductId;
+                    cmd.Parameters.Add("@FK_productPriceId", SqlDbType.UniqueIdentifier, 16).Value = model.ProductPriceId;
+                    cmd.Parameters.Add("@quantity", SqlDbType.Int, 4).Value = model.Quantity;
+                    cmd.Parameters.Add("@total", SqlDbType.Decimal, 9).Value = model.Total;
+                    cmd.Parameters.Add("@isActive", SqlDbType.Bit, 1).Value = model.IsActive;
 
-                    if (con.State == ConnectionState.Closed)
-                        con.Open();
+                    con.Open();
                     return cmd.ExecuteNonQuery() != 0;
                 }
             }

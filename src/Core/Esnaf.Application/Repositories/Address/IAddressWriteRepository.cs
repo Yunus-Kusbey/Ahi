@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Esnaf.Application.Repositories
 {
-    public interface IAddressWriteRepository:IWriteRepository<AddressCreate,AddressUpdate>
+    public interface IAddressWriteRepository:IWriteRepository<AddressCreateDTO, AddressUpdateDTO, Guid>
     {
     }
 }

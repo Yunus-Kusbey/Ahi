@@ -11,22 +11,17 @@ namespace Esnaf.Persistence.Repositories
 {
     public class CartItemReadRepository : ICartItemReadRepository
     {
-        public Task<bool> AddAsync(CartItemCreate entity)
+        public IQueryable<CartItem> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public bool Delete(Guid id)
+        public Task<CartItem> GetByIdAsync(string name)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Update(CartItemUpdate entity)
+        public IQueryable<CartItem> GetWhere()
         {
             throw new NotImplementedException();
         }

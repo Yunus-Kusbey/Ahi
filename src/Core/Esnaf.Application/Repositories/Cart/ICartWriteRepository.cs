@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Esnaf.Application.Repositories
 {
-    public interface ICartWriteRepository:IWriteRepository<CartCreate,CartUpdate>
+    public interface ICartWriteRepository:IWriteRepository<CartCreateDTO,CartUpdateDTO,Guid>
     {
     }
 }

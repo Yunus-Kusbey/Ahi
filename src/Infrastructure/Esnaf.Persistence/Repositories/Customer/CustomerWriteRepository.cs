@@ -2,12 +2,13 @@
 using Esnaf.Application.DTOs.Customer;
 using System.Data.SqlClient;
 using System.Data;
+using System.Reflection;
 
 namespace Esnaf.Persistence
 {
     public class CustomerWriteRepository : ICustomerWriteRepository
     {
-        public async Task<bool> AddAsync(CustomerCreate entity)
+        public async Task<Guid> AddAsync(CustomerCreateDTO model)
         {
             using (var con = Connection.SqlConnection())
             {
@@ -15,15 +16,20 @@ namespace Esnaf.Persistence
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@name", SqlDbType.VarChar, 24);
-                    cmd.Parameters.Add("@surname", SqlDbType.VarChar, 24);
-                    cmd.Parameters.Add("@FK_addressId", SqlDbType.UniqueIdentifier, 16);
-                    cmd.Parameters.Add("@gender", SqlDbType.Bit, 1);
-                    cmd.Parameters.Add("@BirthDay", SqlDbType.Date, 3);
-
-                    if (con.State == ConnectionState.Closed)
-                        con.Open();
-                    return await cmd.ExecuteNonQueryAsync() != 0;
+                    cmd.Parameters.Add("@name", SqlDbType.VarChar, 24).Value = model.Name;
+                    cmd.Parameters.Add("@surname", SqlDbType.VarChar, 24).Value = model.Surname;
+                    cmd.Parameters.Add("@FK_addressId", SqlDbType.UniqueIdentifier, 16).Value = model.AddressId;
+                    cmd.Parameters.Add("@gender", SqlDbType.Bit, 1).Value = model.Gender;
+                    cmd.Parameters.Add("@BirthDay", SqlDbType.Date, 3).Value = model.BirthDay;
+                    var ExistsParam = new SqlParameter("@exists", SqlDbType.UniqueIdentifier)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+                    cmd.Parameters.Add(ExistsParam);
+                    con.Open();
+                    await cmd.ExecuteNonQueryAsync();
+                    Guid userExists = (Guid)ExistsParam.Value;
+                    return userExists;
                 }
             }
         }
@@ -36,10 +42,9 @@ namespace Esnaf.Persistence
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16);
+                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16).Value = id;
 
-                    if (con.State == ConnectionState.Closed)
-                        con.Open();
+                    con.Open();
                     return cmd.ExecuteNonQuery() != 0;
                 }
             }
@@ -52,31 +57,29 @@ namespace Esnaf.Persistence
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16);
+                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16).Value = id;
 
-                    if (con.State == ConnectionState.Closed)
-                        con.Open();
+                    con.Open();
                     return await cmd.ExecuteNonQueryAsync() != 0;
                 }
             }
         }
 
-        public bool Update(CustomerUpdate entity)
+        public bool Update(CustomerUpdateDTO model)
         {
             using (var con = Connection.SqlConnection())
             {
                 using (var cmd = new SqlCommand("usp_tblCustomerUpdate", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16);
-                    cmd.Parameters.Add("@name", SqlDbType.VarChar, 24);
-                    cmd.Parameters.Add("@surname", SqlDbType.VarChar, 24);
-                    cmd.Parameters.Add("@FK_addressId", SqlDbType.UniqueIdentifier, 16);
-                    cmd.Parameters.Add("@gender", SqlDbType.Bit, 1);
-                    cmd.Parameters.Add("@isActive", SqlDbType.Bit, 1);
+                    cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16).Value = model.Id;
+                    cmd.Parameters.Add("@name", SqlDbType.VarChar, 24).Value = model.Name;
+                    cmd.Parameters.Add("@surname", SqlDbType.VarChar, 24).Value = model.Surname;
+                    cmd.Parameters.Add("@FK_addressId", SqlDbType.UniqueIdentifier, 16).Value = model.AdressId;
+                    cmd.Parameters.Add("@gender", SqlDbType.Bit, 1).Value = model.Gender;
+                    cmd.Parameters.Add("@isActive", SqlDbType.Bit, 1).Value = model.IsActive;
 
-                    if (con.State == ConnectionState.Closed)
-                        con.Open();
+                    con.Open();
                     return cmd.ExecuteNonQuery() != 0;
                 }
             }

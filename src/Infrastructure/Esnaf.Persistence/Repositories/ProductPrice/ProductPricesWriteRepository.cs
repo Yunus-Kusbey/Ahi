@@ -14,7 +14,7 @@ namespace Esnaf.Persistence.Repositories
 {
     public class ProductPricesWriteRepository : IProductPriceWriteRepository
     {
-        public async Task<bool> AddAsync(ProductPriceCreate entity)
+        public async Task<Guid> AddAsync(ProductPriceCreateDTO entity)
         {
             using (var con = Connection.SqlConnection())
             {
@@ -25,14 +25,18 @@ namespace Esnaf.Persistence.Repositories
                     cmd.Parameters.Add("@FK_productId", SqlDbType.UniqueIdentifier, 16);
                     cmd.Parameters.Add("@name", SqlDbType.VarChar, 25);
                     cmd.Parameters.Add("@price", SqlDbType.Decimal, 9);
-
-                    if (con.State == ConnectionState.Closed)
-                        con.Open();
-                    return await cmd.ExecuteNonQueryAsync() != 0;
+                    var ExistsParam = new SqlParameter("@exists", SqlDbType.UniqueIdentifier)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+                    cmd.Parameters.Add(ExistsParam);
+                    con.Open();
+                    await cmd.ExecuteNonQueryAsync();
+                    Guid userExists = (Guid)ExistsParam.Value;
+                    return userExists;
                 }
             }
         }
-
         public bool Delete(Guid id)
         {
             using (var con = Connection.SqlConnection())
@@ -66,7 +70,7 @@ namespace Esnaf.Persistence.Repositories
             }
         }
 
-        public bool Update(ProductPriceUpdate entity)
+        public bool Update(ProductPriceUpdateDTO entity)
         {
             using (var con = Connection.SqlConnection())
             {

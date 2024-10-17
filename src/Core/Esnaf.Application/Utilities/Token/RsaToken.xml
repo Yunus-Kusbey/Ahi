@@ -1,0 +1,10 @@
+﻿<RSAKeyValue>
+	<Modulus>[YourModulus]</Modulus>
+	<Exponent>[YourExponent]</Exponent>
+	<P>[YourP]</P>
+	<Q>[YourQ]</Q>
+	<DP>[YourDP]</DP>
+	<DQ>[YourDQ]</DQ>
+	<InverseQ>[YourInverseQ]</InverseQ>
+	<D>[YourD]</D>
+</RSAKeyValue>
