@@ -19,7 +19,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Esnaf.Infrastructure", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Esnaf.Persistence", "src\Infrastructure\Esnaf.Persistence\Esnaf.Persistence.csproj", "{1F7294A5-2167-45C3-874A-B7D5B9B07D43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Esnaf.API", "src\Presentation\Esnaf.API\Esnaf.API.csproj", "{FBDC7A2E-BA34-46E8-AEA1-AB97C7769155}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Esnaf.API", "src\Presentation\Esnaf.API\Esnaf.API.csproj", "{FBDC7A2E-BA34-46E8-AEA1-AB97C7769155}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "keys", "keys", "{46A13B00-CFEA-457E-BE37-12DB568B5F2C}"
+	ProjectSection(SolutionItems) = preProject
+		keys\privateKey.pem = keys\privateKey.pem
+		keys\publicKey.pem = keys\publicKey.pem
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
