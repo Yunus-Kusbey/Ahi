@@ -3,33 +3,16 @@ using Esnaf.Application.DTOs.Auth;
 using Esnaf.Application.DTOs.User;
 using Esnaf.Application.Repositories;
 using Esnaf.Application.RequestParameters;
-using Esnaf.Domain.Entities.Identity;
+using Esnaf.Domain.Entities;
 
 namespace Esnaf.Persistence.Services
 {
     public class UserService : IUserService
     {
-        readonly IAuthService _authService;
-        readonly IUserWriteRepository _writeRepository;
-        public UserService(IUserWriteRepository writeRepository, IAuthService authService)
-        {
-            _authService = authService;
-            _writeRepository = writeRepository;
-        }
         public Task AssignRoleToUserAsnyc(string userId, string[] roles)
         {
             throw new NotImplementedException();
         }
-
-        public async Task<CreateUserResponseDTO> CreateUser(CreateUserDTO userDTO)
-        {
-            return new CreateUserResponseDTO()
-            {
-                Succeeded = true,
-                Message = await _writeRepository.AddAsync(userDTO)
-            };
-        }
-
         public Task<List<ListUserDTO>> GetAllUsersAsync(Pagination pagination)
         {
             throw new NotImplementedException();

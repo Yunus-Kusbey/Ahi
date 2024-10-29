@@ -77,5 +77,10 @@ namespace Esnaf.Persistence.Repositories
                 }
             }
         }
+
+        public Task<bool> UserInfoAddAsync(CreateUserInfoDTO create)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

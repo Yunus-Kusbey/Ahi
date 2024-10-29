@@ -10,5 +10,6 @@ namespace Esnaf.Application.Repositories
 {
     public interface IUserWriteRepository:IWriteRepository<CreateUserDTO,UpdateUserDTO,Guid>
     {
+        Task<bool> UserInfoAddAsync(CreateUserInfoDTO create);
     }
 }

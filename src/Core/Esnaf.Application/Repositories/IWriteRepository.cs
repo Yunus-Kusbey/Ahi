@@ -6,8 +6,8 @@
         where K : struct
     {
         Task<K> AddAsync(A model);
-        bool Delete(Guid id);
-        Task<bool> DeleteAsync(Guid id);
+        bool Delete(K id);
+        Task<bool> DeleteAsync(K id);
         bool Update(U model);
 
     }

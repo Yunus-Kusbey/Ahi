@@ -18,7 +18,8 @@ namespace Esnaf.Application.Features.Commands.Address
         }
         public async Task<bool> Handle(AddressUpdateCommandRequest request, CancellationToken cancellationToken)
         {
-            return  _addressWriteRepository.Update(request);
+            bool a = _addressWriteRepository.Update(request);
+            return await  Task.FromResult(a);
         }
     }
 }

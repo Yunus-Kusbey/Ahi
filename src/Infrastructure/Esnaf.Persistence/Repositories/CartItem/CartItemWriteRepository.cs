@@ -33,7 +33,7 @@ namespace Esnaf.Persistence.Repositories
             }
         }
 
-        public bool Delete(Guid id)
+        public bool Delete(int id)
         {
             using (var con = Connection.SqlConnection())
             {
@@ -48,7 +48,7 @@ namespace Esnaf.Persistence.Repositories
                 }
             }
         }
-        public async Task<bool> DeleteAsync(Guid id)
+        public async Task<bool> DeleteAsync(int id)
         {
             using (var con = Connection.SqlConnection())
             {

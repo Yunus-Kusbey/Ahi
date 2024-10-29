@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Esnaf.Application\Esnaf.Application.csproj" />
+    <ProjectReference Include="..\Esnaf.Persistence\Esnaf.Persistence.csproj" />
+  </ItemGroup>
+
 </Project>

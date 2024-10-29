@@ -1,6 +1,6 @@
 ﻿using Esnaf.Application.DTOs.User;
 using Esnaf.Application.RequestParameters;
-using Esnaf.Domain.Entities.Identity;
+using Esnaf.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,6 @@ namespace Esnaf.Application.Abstractions.Services
 {
     public interface IUserService
     {
-        Task<CreateUserResponseDTO> CreateUser(CreateUserDTO userDTO);
         Task UpdateRefreshTokenAsync(string refreshToken, User user, DateTime accessTokenDate, int addOnAccessTokenDate);
         Task<List<ListUserDTO>> GetAllUsersAsync(Pagination pagination);
         int TotalUsersCount();

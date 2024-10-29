@@ -1,5 +1,5 @@
-﻿using Esnaf.Application.DTOs;
-using Esnaf.Application.DTOs.Auth;
+﻿using Esnaf.Application.DTOs.Auth;
+using Esnaf.Application.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace Esnaf.Application.Abstractions.Services.Auth
 {
     public interface IInternalAuthentication
     {
-        public Task<TokenDTO> PhoneLoginAsync(UserLoginDTO userLogin);
-        public Task<TokenDTO> RefreshTokenLoginAsync(UserLoginDTO userLogin);
+        public Task<ViewModels.Token> PhoneLoginAsync(UserLoginDTO userLogin,int accesLifeTime);
+        public Task<ViewModels.Token> RefreshTokenLoginAsync(UserLoginDTO userLogin);
     }
 }

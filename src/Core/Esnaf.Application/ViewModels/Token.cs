@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Esnaf.Application.ViewModels
 {
-    public class ApiDataResponse<T>
+    public class Token
     {
-        public List<T> Data { get; set; }
-        public bool Success { get; set; }
-        public string Message { get; set; }
+        public string AccessToken { get; set; }
+        public DateTime Expiration { get; set; }
+        public string RefreshToken { get; set; }
     }
 }

@@ -7,31 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Const\" />
     <Folder Include="DTOs\Payment\" />
-    <Folder Include="Exceptions\" />
-    <Folder Include="Features\Commands\User\UserInfoCreate\" />
     <Folder Include="Features\Commands\User\UserUpdate\" />
-    <Folder Include="Features\Commands\Cart\CartCreate\" />
-    <Folder Include="Features\Commands\Cart\CartDelete\" />
-    <Folder Include="Features\Commands\Cart\CartUpdate\" />
-    <Folder Include="Features\Commands\Category\CategoryCreate\" />
-    <Folder Include="Features\Commands\Category\CategoryDelete\" />
-    <Folder Include="Features\Commands\Category\CategoryUpdate\" />
-    <Folder Include="Features\Commands\Customer\CustomerCreate\" />
-    <Folder Include="Features\Commands\Customer\CustomerDelete\" />
-    <Folder Include="Features\Commands\Customer\CustomerUpdate\" />
-    <Folder Include="Features\Commands\Order\OrderCreate\" />
-    <Folder Include="Features\Commands\Order\OrderDelete\" />
-    <Folder Include="Features\Commands\Order\OrderUpdate\" />
-    <Folder Include="Features\Commands\Seller\SellerCreate\" />
-    <Folder Include="Features\Commands\Seller\SellerDelete\" />
-    <Folder Include="Features\Commands\Seller\SellerUpdate\" />
     <Folder Include="Features\Queries\" />
-    <Folder Include="Validators\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="BouncyCastle.Cryptography" Version="2.4.0" />
+    <PackageReference Include="FluentValidation" Version="11.10.0" />
     <PackageReference Include="jose-jwt" Version="5.0.0" />
     <PackageReference Include="MediatR" Version="12.4.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.10" />
@@ -40,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Presentation\Esnaf.API\Esnaf.API.csproj" />
     <ProjectReference Include="..\Esnaf.Domain\Esnaf.Domain.csproj" />
   </ItemGroup>
 

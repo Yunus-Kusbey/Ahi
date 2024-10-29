@@ -8,8 +8,6 @@ namespace Esnaf.Application.DTOs.Auth
 {
     public class UserLoginDTO
     {
-        public string Phone { get; set;}
-        public string? Token { get; set;}
-        public DateTime? Expration { get; set;}
+        public int Phone { get; set;}
     }
 }
