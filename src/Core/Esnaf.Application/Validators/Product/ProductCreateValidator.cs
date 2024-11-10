@@ -12,7 +12,7 @@ namespace Esnaf.Application.Validators.Product
     {
         public ProductCreateValidator()
         {
-            RuleFor(p=>p.Name).NotEmpty();
+            RuleFor(p=>p.Name).NotEmpty().MaximumLength(24).MinimumLength(2);
             RuleFor(p=>p.Description).NotEmpty();
             RuleFor(p=>p.Summary).NotEmpty();
             RuleFor(p=>p.CategoryId).NotEmpty();

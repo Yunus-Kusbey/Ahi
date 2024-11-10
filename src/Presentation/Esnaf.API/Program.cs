@@ -54,7 +54,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseStaticFiles();
 app.UseHttpsRedirection(); // HTTPS yönlendirmesi
 app.UseRouting(); // Yönlendirme middleware'i
 app.UseCors("AllowCors");

@@ -36,7 +36,7 @@ namespace Esnaf.Persistence
             #endregion
 
             #region Services
-            services.AddScoped<IAuthService, AuthService>();
+            
             services.AddScoped<IUserService, UserService>();
             
             #endregion

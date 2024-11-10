@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Esnaf.Application.Abstractions.Services;
+using Microsoft.Extensions.DependencyInjection;
+using StackExchange.Redis;
 namespace Esnaf.Application
 {
     public static class ServiceRegistration
@@ -7,37 +9,13 @@ namespace Esnaf.Application
         {
             collection.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
 
-            
-
-
-            /*  collection.AddIdentity<User, Role>()
-          .AddUserStore<ICustomIdentityUser>() // Kendi kullanıcı deposu
-          .AddRoleStore<ICustomIdentityRole>() // Kendi rol deposu
-          .AddDefaultTokenProviders();
-
-              collection.AddAuthentication(options =>
-              {
-                  options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                  options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-              })
-              .AddJwtBearer(options =>
-              {
-                  options.TokenValidationParameters = new TokenValidationParameters
-                  {
-                      ValidateIssuer = true,
-                      ValidateAudience = true,
-                      ValidateLifetime = true,
-                      ValidateIssuerSigningKey = true,
-                      ValidIssuer = "MyApp",
-                      ValidAudience = "MyAppUser",
-                      IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("A1b2C3d4E5f6G7h8I9j0K1l2M3n4O5p6"))
-                  };
-              });
-              collection.AddAuthorization();
-
-              collection.AddControllers();*/
+            var redisConnection = ConnectionMultiplexer.Connect("localhost:6379"); // Redis server adresi
+            collection.AddSingleton<IConnectionMultiplexer>(redisConnection);
+            collection.AddStackExchangeRedisCache(option =>
+            {
+                option.Configuration = "localhost:6379"; //Redis sunucu adresi
+                option.InstanceName = "esnaf"; //Örnek bir instance adı
+            });
         }
-
-
     }
 }

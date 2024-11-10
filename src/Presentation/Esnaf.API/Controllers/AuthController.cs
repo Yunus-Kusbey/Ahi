@@ -1,4 +1,5 @@
 ﻿using Esnaf.Application.Features.Commands.AppUser.LoginUser;
+using Esnaf.Application.Features.Commands.AppUser.OTPSend;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +17,21 @@ namespace Esnaf.API.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> GetToken([FromBody] LoginUserCommandRequest number)
+        public async Task<IActionResult> OTPSender([FromBody] OTPSendCommandRequest request)
+        {
+            if (request == null)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                var response = await _mediator.Send(request);
+                return Ok(response);
+            }
+        }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> Login([FromBody] LoginUserCommandRequest number)
         {
             LoginUserCommandResponse response = await _mediator.Send(number);
             return Ok(response.Token);

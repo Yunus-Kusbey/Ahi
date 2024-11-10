@@ -19,7 +19,7 @@ namespace Esnaf.Infrastructure.Services
             _configuration = configuration;
         }
 
-        public Token CreateAccessToken(int second,string id,string role)
+        public Token CreateAccessToken(int date,string id,string role)
         {
             Token token = new();
 
@@ -33,7 +33,7 @@ namespace Esnaf.Infrastructure.Services
             SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes(_configuration["Token:SecurityKey"]));
             SigningCredentials key = new(securityKey, SecurityAlgorithms.HmacSha256);
 
-            token.Expiration = DateTime.UtcNow.AddSeconds(second);
+            token.Expiration = DateTime.UtcNow.AddDays(date);
 
             JwtSecurityToken securityToken = new(
                 audience: _configuration["Token:Audience"],

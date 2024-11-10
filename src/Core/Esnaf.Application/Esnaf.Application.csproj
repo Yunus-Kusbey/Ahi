@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Const\" />
     <Folder Include="DTOs\Payment\" />
     <Folder Include="Features\Commands\User\UserUpdate\" />
     <Folder Include="Features\Queries\" />
@@ -19,6 +18,7 @@
     <PackageReference Include="jose-jwt" Version="5.0.0" />
     <PackageReference Include="MediatR" Version="12.4.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.10" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.10" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="8.0.10" />
   </ItemGroup>

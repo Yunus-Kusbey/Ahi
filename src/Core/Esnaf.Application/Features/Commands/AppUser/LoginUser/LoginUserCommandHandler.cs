@@ -1,6 +1,7 @@
 ﻿using Esnaf.Application.Abstractions.Services;
 using Esnaf.Application.Abstractions.Token;
 using Esnaf.Application.DTOs;
+using Esnaf.Application.DTOs.Auth;
 using Esnaf.Application.Exceptions;
 using Esnaf.Application.ViewModels;
 using MediatR;
@@ -23,11 +24,17 @@ namespace Esnaf.Application.Features.Commands.AppUser.LoginUser
 
         public async Task<LoginUserCommandResponse> Handle(LoginUserCommandRequest request, CancellationToken cancellationToken)
         {
-            var token = await _authService.PhoneLoginAsync(request, 900);
-            return new LoginUserCommandResponse()
+            //Otp kodu ile telefon numarası buraya gelecek ve jwt ye kayıtlı mı deil mi diye kod eklenecek kayıtlı deil ise kayıt ekleme mediatr a gidecek
+            //ordanda kayıt yapılacak
+            if (request != null)
             {
-                Token = token,
-            };
+                var token = await _authService.PhoneLoginAsync(request.Phone);
+                return new LoginUserCommandResponse()
+                {
+                    Token = token,
+                };
+            }
+            else { throw new NotFoundUserException(); }
         }
     }
 }
