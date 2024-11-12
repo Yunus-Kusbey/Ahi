@@ -8,7 +8,7 @@ namespace Esnaf.Application.DTOs.Seller
 {
     public class SellerCreateDTO
     {
-        public string PhoneNumber { get; set; }
+        public Guid Id { get; set; }
         public string? ShopName { get; set; }
         public string?  VKN { get; set; }
     }
