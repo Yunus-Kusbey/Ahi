@@ -11,6 +11,7 @@ namespace Esnaf.Application.Abstractions.Services
 {
     public interface IUserService
     {
+        Task<bool> CreateAsync(string phoneNumber);
         Task UpdateRefreshTokenAsync(string refreshToken, User user, DateTime accessTokenDate, int addOnAccessTokenDate);
         Task<List<ListUserDTO>> GetAllUsersAsync(Pagination pagination);
         int TotalUsersCount();

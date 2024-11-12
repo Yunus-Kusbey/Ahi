@@ -1,5 +1,4 @@
-﻿using Esnaf.Application.Abstractions.Services;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
 namespace Esnaf.Application
 {

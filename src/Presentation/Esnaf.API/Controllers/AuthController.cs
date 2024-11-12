@@ -1,5 +1,8 @@
 ﻿using Esnaf.Application.Features.Commands.AppUser.LoginUser;
 using Esnaf.Application.Features.Commands.AppUser.OTPSend;
+using Esnaf.Application.Features.Commands.Customer;
+using Esnaf.Application.Features.Commands.Seller;
+using Esnaf.Application.Features.Commands.User;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,15 +22,8 @@ namespace Esnaf.API.Controllers
         [HttpPost("[action]")]
         public async Task<IActionResult> OTPSender([FromBody] OTPSendCommandRequest request)
         {
-            if (request == null)
-            {
-                return BadRequest();
-            }
-            else
-            {
-                var response = await _mediator.Send(request);
-                return Ok(response);
-            }
+            var response = await _mediator.Send(request);
+            return Ok(response);
         }
 
         [HttpPost("[action]")]
@@ -36,15 +32,27 @@ namespace Esnaf.API.Controllers
             LoginUserCommandResponse response = await _mediator.Send(number);
             return Ok(response.Token);
         }
-        [Authorize(Roles = "admin")]
-        [HttpGet("admin")]
+        [HttpPost("[action]")]
+        public async Task<IActionResult> CustomerCreate([FromBody] CustomerCreateCommandRequest request)
+        {
+            Guid id = await _mediator.Send(request);
+            return Ok(id);
+        }
+        [HttpPost("[action]")]
+        public async Task<IActionResult> SellerCreate([FromBody] SellerCreateCommandRequest request)
+        {
+            Guid id = await _mediator.Send(request);
+            return Ok(id);
+        }
+        [Authorize(Roles = "Admin")]
+        [HttpGet("Admin")]
         public IActionResult AdminOnlyEndpoint()
         {
             return Ok("Bu sadece adminler için.");
         }
 
-        [Authorize(Roles = "user")]
-        [HttpGet("user")]
+        [Authorize(Roles = "User")]
+        [HttpGet("User")]
         public IActionResult UserOnlyEndpoint()
         {
             return Ok("Bu sadece kullanıcılar için.");

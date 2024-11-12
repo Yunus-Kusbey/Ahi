@@ -21,6 +21,11 @@ namespace Esnaf.Infrastructure.Services
             return await _db.KeyDeleteAsync(key);
         }
 
+        public async Task<bool> GetAsync(string key)
+        {
+            return await _db.KeyExistsAsync(key);
+        }
+
         public async Task<string?> GetCacheValueAsync(string key)
         {
             if (await _db.KeyExistsAsync(key))

@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Esnaf.Application.Features.Commands.Customer
 {
-    public class CustomerCreateCommandHandler : IRequestHandler<CustomerCreateCommandRequest, bool>
+    public class CustomerCreateCommandHandler : IRequestHandler<CustomerCreateCommandRequest, Guid>
     {
         readonly ICustomerWriteRepository _customerWriteRepository;
 
@@ -12,11 +12,9 @@ namespace Esnaf.Application.Features.Commands.Customer
             _customerWriteRepository = customerWriteRepository;
         }
 
-        async Task<bool> IRequestHandler<CustomerCreateCommandRequest, bool>.Handle(CustomerCreateCommandRequest request, CancellationToken cancellationToken)
+        async Task<Guid> IRequestHandler<CustomerCreateCommandRequest, Guid>.Handle(CustomerCreateCommandRequest request, CancellationToken cancellationToken)
         {
-            if (await _customerWriteRepository.AddAsync(request) != Guid.Empty)
-                return true;
-            return false;
+            return await _customerWriteRepository.AddAsync(request);               
         }
     }
 }

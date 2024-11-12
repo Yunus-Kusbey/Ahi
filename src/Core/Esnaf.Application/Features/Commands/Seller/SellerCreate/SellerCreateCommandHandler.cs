@@ -8,18 +8,16 @@ using System.Threading.Tasks;
 
 namespace Esnaf.Application.Features.Commands.Seller
 {
-    public class SellerCreateCommandHandler : IRequestHandler<SellerCreateCommandRequest, bool>
+    public class SellerCreateCommandHandler : IRequestHandler<SellerCreateCommandRequest, Guid>
     {
         readonly ISellerWriteRepository _repository;
         public SellerCreateCommandHandler(ISellerWriteRepository sellerWrite)
         {
             _repository = sellerWrite;
         }
-        public async Task<bool> Handle(SellerCreateCommandRequest request, CancellationToken cancellationToken)
+        public async Task<Guid> Handle(SellerCreateCommandRequest request, CancellationToken cancellationToken)
         {
-            if( await _repository.AddAsync(request)!=Guid.Empty)
-                return true;
-            return false;
+            return await _repository.AddAsync(request);
         }
     }
 }

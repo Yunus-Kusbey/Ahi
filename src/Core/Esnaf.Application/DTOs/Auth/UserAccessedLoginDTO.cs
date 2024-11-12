@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Esnaf.Application.Const.Enums;
+using Esnaf.Application.ViewModels;
 
 namespace Esnaf.Application.DTOs.Auth
 {
     public class UserAccessedLoginDTO
     {
-        public string Role { get; set;}
-        public bool IsActive{ get; set;}
+        public Guid Id { get; set; }
+        public Token? Token { get; set; }
+        public Roles Role { get; set; }
+        public bool IsRegister { get; set; }
+        public bool IsActive { get; set; }
     }
 }

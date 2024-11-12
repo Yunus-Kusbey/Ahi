@@ -14,27 +14,35 @@ using System.Threading.Tasks;
 
 namespace Esnaf.Application.Features.Commands.AppUser.LoginUser
 {
-    public class LoginUserCommandHandler : IRequestHandler<LoginUserCommandRequest, LoginUserCommandResponse>
+    public class LoginUserCommandHandler : IRequestHandler<LoginUserCommandRequest, LoginUserCommandResponse?>
     {
-        readonly IAuthService _authService;
+        readonly private IAuthService _authService;
         public LoginUserCommandHandler(IAuthService authService)
         {
             _authService = authService;
         }
 
-        public async Task<LoginUserCommandResponse> Handle(LoginUserCommandRequest request, CancellationToken cancellationToken)
+        public async Task<LoginUserCommandResponse?> Handle(LoginUserCommandRequest request, CancellationToken cancellationToken)
         {
-            //Otp kodu ile telefon numarası buraya gelecek ve jwt ye kayıtlı mı deil mi diye kod eklenecek kayıtlı deil ise kayıt ekleme mediatr a gidecek
-            //ordanda kayıt yapılacak
-            if (request != null)
+            if (request.Phone != null && request.OTPCode != null)
             {
-                var token = await _authService.PhoneLoginAsync(request.Phone);
-                return new LoginUserCommandResponse()
+                var user = await _authService.PhoneLoginAsync(request.Phone);
+                if (user != null)
                 {
-                    Token = token,
-                };
+                    if (await _authService.VerifyOTPAsync(request))
+                    {
+                        return new LoginUserCommandResponse() { 
+                        Token=user.Token,
+                        UserId=user.Id,
+                        Register=user.IsRegister
+                        };
+                    };
+                    //OTP doğrulanmadı
+                    return null;
+                }
+                return null;
             }
-            else { throw new NotFoundUserException(); }
+            else { return null; }
         }
     }
 }

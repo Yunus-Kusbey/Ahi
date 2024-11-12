@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Esnaf.Application.Features.Commands.Customer
 {
-    public class CustomerCreateCommandRequest:CustomerCreateDTO,IRequest<bool>
+    public class CustomerCreateCommandRequest:CustomerCreateDTO,IRequest<Guid>
     {
     }
 }

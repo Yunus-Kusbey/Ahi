@@ -8,10 +8,9 @@ namespace Esnaf.Application.DTOs.Customer
 {
     public class CustomerCreateDTO
     {
-        public Guid UserId { get; set; }
+        public Guid Id{ get; set; }
         public string? Name { get; set; }
         public string? Surname { get; set; }
-        public Guid AddressId { get; set; }
         public short Gender { get; set; }
         public DateTime BirthDay { get; set; }
 

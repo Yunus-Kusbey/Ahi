@@ -10,6 +10,6 @@ namespace Esnaf.Application.Repositories
 {
     public interface IUserReadRepository:IReadRepository<User>
     {
-        public Task<UserAccessedLoginDTO> Control(string PhoneNumber);
+        public Task<UserAccessedLoginDTO?> Control(string PhoneNumber);
     }
 }

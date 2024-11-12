@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Esnaf.Application.Const
+namespace Esnaf.Application.Const.Enums
 {
-    public enum TokenTime
+    public enum Roles
     {
-        loginTimeDate = 60,
-        otpTimeMinutes=3
+        Admin=0,
+        Customer=1,
+        Seller=2
     }
 }

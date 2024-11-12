@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Esnaf.Application.Features.Commands.Seller
 {
-    public class SellerCreateCommandRequest:SellerCreateDTO,IRequest<bool>
+    public class SellerCreateCommandRequest:SellerCreateDTO,IRequest<Guid>
     {
     }
 }

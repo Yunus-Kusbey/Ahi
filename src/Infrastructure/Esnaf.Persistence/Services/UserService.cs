@@ -13,6 +13,12 @@ namespace Esnaf.Persistence.Services
         {
             throw new NotImplementedException();
         }
+
+        public Task<bool> CreateAsync(string phoneNumber)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<List<ListUserDTO>> GetAllUsersAsync(Pagination pagination)
         {
             throw new NotImplementedException();

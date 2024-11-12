@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Esnaf.Application.Features.Commands.AppUser.OTPSend
 {
-    public class OTPSendCommandRequest:UserLoginDTO,IRequest<Token?>
+    public class OTPSendCommandRequest:UserLoginDTO,IRequest<UserAccessedLoginDTO?>
     {
     }
 }

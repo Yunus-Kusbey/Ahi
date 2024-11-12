@@ -1,6 +1,5 @@
 ﻿using Esnaf.Application.DTOs.Auth;
 using Esnaf.Application.ViewModels;
-using Esnaf.Domain.Entities.Identity;
 
 namespace Esnaf.Application.Abstractions.Token
 {
