@@ -11,7 +11,6 @@ namespace Esnaf.Application.DTOs.Seller
         public Guid Id;
         public string? ShopName;
         public string? VKN;
-        public string? AddressId;
         public short IsActive;
     }
 }

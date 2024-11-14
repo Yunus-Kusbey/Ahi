@@ -15,7 +15,7 @@ namespace Esnaf.Persistence.Repositories
                 using (var cmd = new SqlCommand("usp_tblSellerInsert", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@FK_userId", SqlDbType.VarChar, 10).Value = model.Id;
+                    cmd.Parameters.Add("@FK_userId", SqlDbType.VarChar, 10).Value = model.UserId;
                     cmd.Parameters.Add("@shopName", SqlDbType.VarChar, 50).Value = model.ShopName;
                     cmd.Parameters.Add("@VKN", SqlDbType.VarChar, 10).Value = model.VKN;
                     var ExistsParam = new SqlParameter("@exists", SqlDbType.UniqueIdentifier)
@@ -72,7 +72,6 @@ namespace Esnaf.Persistence.Repositories
                     cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16).Value = model.Id;
                     cmd.Parameters.Add("@shopName", SqlDbType.VarChar, 50).Value = model.ShopName;
                     cmd.Parameters.Add("@VKN", SqlDbType.VarChar, 10).Value = model.VKN;
-                    cmd.Parameters.Add("@FK_addressId", SqlDbType.UniqueIdentifier, 16).Value = model.AddressId;
                     cmd.Parameters.Add("@isActive", SqlDbType.Bit, 1).Value = model.IsActive;
 
                     con.Open();

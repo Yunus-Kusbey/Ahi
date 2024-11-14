@@ -2,13 +2,8 @@
 using Esnaf.Application.DTOs.Auth;
 using Esnaf.Application.Repositories;
 using Esnaf.Domain.Entities;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Esnaf.Persistence.Repositories
 {
@@ -56,6 +51,8 @@ namespace Esnaf.Persistence.Repositories
                                 roles = Roles.Customer; break;
                             case "2":
                                 roles = Roles.Seller; break;
+                            case "3":
+                                roles = Roles.LoginSave; break;
                         }
                         return new UserAccessedLoginDTO { Role = roles, IsActive = (bool)outIsActive.Value, Id = (Guid)outId.Value, IsRegister = (bool)outRegister.Value };
                     }

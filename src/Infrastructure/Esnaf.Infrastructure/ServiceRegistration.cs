@@ -13,6 +13,7 @@ namespace Esnaf.Infrastructure
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ITokenHandler, TokenHandler>();
             services.AddScoped<IRedisCacheService, RedisCacheService>();
+            services.AddScoped<IStrogeService,StrogeService>();
         }
     }
 }

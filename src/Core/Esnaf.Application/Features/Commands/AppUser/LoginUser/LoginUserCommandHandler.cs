@@ -1,16 +1,5 @@
 ﻿using Esnaf.Application.Abstractions.Services;
-using Esnaf.Application.Abstractions.Token;
-using Esnaf.Application.DTOs;
-using Esnaf.Application.DTOs.Auth;
-using Esnaf.Application.Exceptions;
-using Esnaf.Application.ViewModels;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Esnaf.Application.Features.Commands.AppUser.LoginUser
 {

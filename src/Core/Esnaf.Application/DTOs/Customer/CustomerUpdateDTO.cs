@@ -9,7 +9,6 @@ namespace Esnaf.Application.DTOs.Customer
     public class CustomerUpdateDTO
     {
         public Guid Id;
-        public Guid AdressId;
         public string? Name;
         public string? Surname;
         public short Gender;

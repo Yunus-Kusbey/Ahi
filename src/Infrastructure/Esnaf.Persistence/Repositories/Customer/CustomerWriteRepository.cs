@@ -75,7 +75,6 @@ namespace Esnaf.Persistence
                     cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier, 16).Value = model.Id;
                     cmd.Parameters.Add("@name", SqlDbType.VarChar, 24).Value = model.Name;
                     cmd.Parameters.Add("@surname", SqlDbType.VarChar, 24).Value = model.Surname;
-                    cmd.Parameters.Add("@FK_addressId", SqlDbType.UniqueIdentifier, 16).Value = model.AdressId;
                     cmd.Parameters.Add("@gender", SqlDbType.Bit, 1).Value = model.Gender;
                     cmd.Parameters.Add("@isActive", SqlDbType.Bit, 1).Value = model.IsActive;
 

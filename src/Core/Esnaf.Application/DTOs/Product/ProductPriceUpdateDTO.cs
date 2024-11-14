@@ -9,7 +9,6 @@ namespace Esnaf.Application.DTOs.Product
     public class ProductPriceUpdateDTO
     {
         public Guid Id;
-        public Guid ProductId;
         public decimal Price;
         public string? Name;
         public short IsActive;

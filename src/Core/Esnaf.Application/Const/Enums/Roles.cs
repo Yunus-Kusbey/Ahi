@@ -10,6 +10,7 @@ namespace Esnaf.Application.Const.Enums
     {
         Admin=0,
         Customer=1,
-        Seller=2
+        Seller=2,
+        LoginSave=3
     }
 }

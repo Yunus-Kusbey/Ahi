@@ -53,7 +53,8 @@ namespace Esnaf.Infrastructure.Services
 
         public async Task<bool> VerifyOTPAsync(UserOTPLoginDTO userLogin)
         {
-            if (await _redisCacheService.GetCacheValueAsync(userLogin.Phone.ToString()) == userLogin.OTPCode) return true;
+            if (userLogin != null)
+                if (await _redisCacheService.GetCacheValueAsync(userLogin.Phone.ToString()) == userLogin.OTPCode) return true;
             return false;
         }
 
