@@ -1,0 +1,6 @@
+@Ahi.ProductService_HostAddress = http://localhost:5129
+
+GET {{Ahi.ProductService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
